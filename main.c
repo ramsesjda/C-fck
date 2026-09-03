@@ -1,9 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
+int main(int argc, char *argv[]){
 
-    FILE *arquivo = fopen("brainfuck.txt", "r");
+    if (argc > 2){
+	printf("Invalid number of arguments.\n");
+	printf("Correct use: %s --filename\n", argv[0]);
+	return 1;
+    }
+
+
+    FILE *arquivo = fopen(argv[1], "r");
 
 
     int FITA = 100;
@@ -23,8 +30,8 @@ int main(){
     
     //caso o arquivo não exista
     if(arquivo == NULL) {
-	printf("Arquivo não existe");
-	return 1;
+	printf("File does not exist.\n");
+	return 2;
     }
     
     char buffer[256];
